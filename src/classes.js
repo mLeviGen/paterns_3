@@ -87,7 +87,7 @@ export class UserDataBase {
         return false; 
     }
 
-    #save() { localStorage.setItem('db_users', JSON.stringify(this.#users)); }
+    save() { localStorage.setItem('db_users', JSON.stringify(this.#users)); }
     #load() {
         const data = localStorage.getItem('db_users');
         this.#users = data ? JSON.parse(data) : [];
