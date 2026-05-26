@@ -2,6 +2,8 @@ import { UserDataBase } from './classes.js';
 import { UserFactory } from './factory.js';
 import { Logger } from './logger.js';
 
+localStorage.clear();
+
 document.body.innerHTML = '<h2>Лабораторна №3: Factory & Logger</h2><pre id="output"></pre>';
 const output = document.getElementById('output');
 const print = (t) => output.innerText += t + '\n';
