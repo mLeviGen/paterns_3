@@ -70,7 +70,7 @@ export class UserDataBase {
 
     createUser(user) {
         this.#users.push(user);
-        this.#save();
+        this.save();
     }
 
     searchUser(name) {
@@ -81,7 +81,7 @@ export class UserDataBase {
         const beforeCount = this.#users.length;
         this.#users = this.#users.filter(u => u.id !== id);
         if (this.#users.length < beforeCount) {
-            this.#save();
+            this.save();
             return true;
         }
         return false; 
