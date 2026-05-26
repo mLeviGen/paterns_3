@@ -17,6 +17,11 @@ export class Admin extends User {
         super(name, email, password); 
         this.role = 'Admin';
     }
+    
+    deleteUser(userId, db) {
+        db.deleteUser(userId);
+        return true;
+    }
 }
 
 
@@ -24,6 +29,18 @@ export class Moderator extends User {
     constructor(name, email, password) {
         super(name, email, password);
         this.role = 'Moderator';
+    }
+    
+    warnUser(user) {
+        console.log(`Попередження користувачу ${user.name}`);
+        return true;
+    }
+    
+    blockUser(user, db) {
+        user.isBlocked = true;
+        db.#save();
+        console.log(`🔒 Користувач ${user.name} заблокований`);
+        return true;
     }
 }
 
