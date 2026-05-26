@@ -39,7 +39,7 @@ export class Moderator extends User {
     blockUser(user, db) {
         user.isBlocked = true;
         db.#save();
-        console.log(`🔒 Користувач ${user.name} заблокований`);
+        console.log(`Користувач ${user.name} заблокований`);
         return true;
     }
 }
