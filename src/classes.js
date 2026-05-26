@@ -77,6 +77,16 @@ export class UserDataBase {
         return this.#users.filter(u => u.name.includes(name));
     }
 
+    deleteUser(id) {
+        const beforeCount = this.#users.length;
+        this.#users = this.#users.filter(u => u.id !== id);
+        if (this.#users.length < beforeCount) {
+            this.#save();
+            return true;
+        }
+        return false; 
+    }
+
     #save() { localStorage.setItem('db_users', JSON.stringify(this.#users)); }
     #load() {
         const data = localStorage.getItem('db_users');
