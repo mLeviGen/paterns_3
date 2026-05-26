@@ -35,8 +35,16 @@ const admin = db.searchUser("Дмитро")[0];
 const moderator = db.searchUser("Олена")[0];
 const simpleUser = db.searchUser("Іван")[0];
 
-if (admin) logger.logAction("Видалення старого запису бази", admin);
-if (moderator) logger.logAction(`Блокування користувача ${simpleUser.name}`, moderator);
+if (admin && simpleUser) {
+    admin.deleteUser(simpleUser.id, db);
+    logger.logAction(`Видалено користувача ${simpleUser.name}`, admin);
+}
+
+if (moderator && simpleUser) {
+    moderator.warnUser(simpleUser);
+    moderator.blockUser(simpleUser, db);
+    logger.logAction(`Заблоковано користувача ${simpleUser.name}`, moderator);
+}
 
 print("\n--- ЖУРНАЛ СИСТЕМИ (LOGGER) ---");
 logger.getLogs().forEach(entry => print(entry));
